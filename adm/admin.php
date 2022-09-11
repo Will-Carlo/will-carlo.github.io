@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- frontend -->
-
+    <p>Hola mundo</p>
 
 
     <!-- backend -->
