@@ -1,6 +1,6 @@
 <?php
 if($_POST){
-    header('Location:admin.php');
+    header('Location:inicio.php');
 }
 
 ?>
