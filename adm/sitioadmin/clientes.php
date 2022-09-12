@@ -35,10 +35,52 @@ switch($accion){
         // echo "press add";
         break;
     case "modificar":
-        // echo "press mod";
+        $sentenciaSQL = $conexion->prepare("UPDATE cliente SET ci=:ci, nombre=:nombre, paterno=:appaterno, materno=:apmaterno, celular=:celular, correo=:correo, nomUsuario=:usuario, passw=:contr WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->bindParam(':ci',$txtCi);
+        $sentenciaSQL->bindParam(':nombre',$txtNombre);
+        $sentenciaSQL->bindParam(':appaterno',$txtPaterno);
+        $sentenciaSQL->bindParam(':apmaterno',$txtMaterno);
+        $sentenciaSQL->bindParam(':celular',$txtCelular);
+        $sentenciaSQL->bindParam(':correo',$txtCorreo);
+        $sentenciaSQL->bindParam(':usuario',$txtUsuario);
+        $sentenciaSQL->bindParam(':contr',$txtContra);
+        $sentenciaSQL->execute();
+
+        if ($txtImagen!="") {
+            $sentenciaSQL = $conexion->prepare("UPDATE cliente SET fotoPerfil=:img WHERE idCliente=:id");
+            $sentenciaSQL->bindParam(':id', $txtID);
+            $sentenciaSQL->bindParam(':img',$txtImagen);
+            $sentenciaSQL->execute();
+        }
+        
         break;
     case "cancelar":
         // echo "press cls";
+        break;
+    case "seleccionar":
+        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+        $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+        
+        $txtUsuario=$datoCliente['nomUsuario'];
+        $txtCorreo=$datoCliente['correo'];
+        $txtContra=$datoCliente['passw'];
+        $txtCi=$datoCliente['ci'];
+        $txtNombre=$datoCliente['nombre'];
+        $txtPaterno=$datoCliente['paterno'];
+        $txtMaterno=$datoCliente['materno'];
+        $txtCelular=$datoCliente['celular'];
+        $txtImagen=$datoCliente['fotoPerfil'];
+
+
+        break;
+    case "borrar":
+        $sentenciaSQL = $conexion->prepare("DELETE FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+        // echo "press delete";
         break;
 }
 
@@ -57,50 +99,50 @@ $listaClientes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     
         <div>
             <label for="txtID">ID:</label>
-            <input type="text" name="txtID" placeholder="ID">
+            <input type="text" name="txtID" id="txtID" placeholder="ID" value="<?=$txtID?>">
         </div>
 
         <div>
             <label for="txtUsuario">Usuario:</label>
-            <input type="text" name="txtUsuario" placeholder="nombre de usuario">
+            <input type="text" name="txtUsuario" placeholder="nombre de usuario" value="<?=$txtUsuario?>">
         </div>
 
         <div>
             <label for="txtCorreo">Correo:</label>
-            <input type="text" name="txtCorreo" placeholder="correo del cliente">
+            <input type="text" name="txtCorreo" placeholder="correo del cliente" value="<?=$txtCorreo?>">
         </div>
 
         <div>
             <label for="txtContra">Contraseña:</label>
-            <input type="text" name="txtContra" placeholder="contraseña del cliente">
+            <input type="text" name="txtContra" placeholder="contraseña del cliente" value="<?=$txtContra?>">
         </div>
 
 
         <div>
             <label for="txtCi">CI:</label>
-            <input type="text" name="txtCi" placeholder="número de carnet">
+            <input type="text" name="txtCi" placeholder="número de carnet" value="<?=$txtCi?>">
         </div>
 
         <div>
             <label for="txtNombre">Nombre:</label>
-            <input type="text" name="txtNombre" placeholder="nombre del cliente">
+            <input type="text" name="txtNombre" placeholder="nombre del cliente" value="<?=$txtNombre?>">
         </div>
         <div>
             <label for="txtPaterno">Paterno:</label>
-            <input type="text" name="txtPaterno" placeholder="apellido paterno">
+            <input type="text" name="txtPaterno" placeholder="apellido paterno" value="<?=$txtPaterno?>">
         </div>
         <div>
             <label for="txtMaterno">Materno:</label>
-            <input type="text" name="txtMaterno" placeholder="apellido materno">
+            <input type="text" name="txtMaterno" placeholder="apellido materno" value="<?=$txtMaterno?>">
         </div>
         <div>
             <label for="txtCelular">Celular:</label>
-            <input type="number" name="txtCelular" placeholder="celular">
+            <input type="number" name="txtCelular" placeholder="celular" value="<?=$txtCelular?>">
         </div>
 
         <div>
             <label for="fotoPerfil">Foto Perfil:</label>
-            <input type="file" name="txtImagen" >
+            <input type="file" name="txtImagen" value="<?=$txtImagen?>">
         </div>
 
         <div>
@@ -123,27 +165,42 @@ $listaClientes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Imagen</th>
+                <th>usuario</th>
+                <th>correo</th>
+                <th>contraseña</th>
+                <th>ci</th>
+                <th>nombre</th>
+                <th>ap. paterno</th>
+                <th>ap. materno</th>
+                <th>celular</th>
+                <th>imagen</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-        <thead>
+        <tbody>
             <?php foreach($listaClientes as $cliente): ?>
                 <tr>
-                    <th><?= $cliente['idCliente']?></th>
-                    <th><?= $cliente['nomUsuario']?></th>
-                    <th><?= $cliente['correo']?></th>
-                    <th><?= $cliente['password']?></th>
-                    <th><?= $cliente['ci']?></th>
-                    <th><?= $cliente['nombre']?></th>
-                    <th><?= $cliente['paterno']?></th>
-                    <th><?= $cliente['materno']?></th>
-                    <th><?= $cliente['celular']?></th>
-                    <th>seleccionar | borrar</th>    
+                    <td><?= $cliente['idCliente']?></td>
+                    <td><?= $cliente['nomUsuario']?></td>
+                    <td><?= $cliente['correo']?></td>
+                    <td><?= $cliente['passw']?></td>
+                    <td><?= $cliente['ci']?></td>
+                    <td><?= $cliente['nombre']?></td>
+                    <td><?= $cliente['paterno']?></td>
+                    <td><?= $cliente['materno']?></td>
+                    <td><?= $cliente['celular']?></td>
+                    <td><?= $cliente['fotoPerfil']?></td>
+                    <td>
+                        <!-- seleccionar | borrar -->
+                        <form method="post">
+                            <input type="hidden" name="txtID" id="txtID" value="<?= $cliente['idCliente']?>">
+                            <input type="submit" name="accion" value="seleccionar" />
+                            <input type="submit" name="accion" value="borrar" />
+                        </form>
+                    </td>    
                 </tr>
             <?php endforeach;?>
-        </thead>
+        </tbody>
     </table>
 </div>
 
