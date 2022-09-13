@@ -14,21 +14,6 @@ if($_POST){
     <title>Document</title>
 </head>
 <body>
-    <!-- frontend -->
-    <form method="POST">
-        <div>
-            <label>USUARIO</label>
-            <input type="text" name="user" placeholder="Escribe tu correo">
-        </div>
-        <div>
-            <label>CONTRASEÑA</label>
-            <input type="password" name="pass" placeholder="Escribe tu contraseña">
-        </div>
-            <button type="submit" class="">Entrar</button>
-    </form>
-        <small>¿No tienes cuenta? registrate <a href="registro.php"> aquí </a></small>
-
-    <!-- backend -->
 
 
 </body>

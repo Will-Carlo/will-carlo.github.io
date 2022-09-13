@@ -40,7 +40,7 @@ switch($accion){
 
         $sentenciaSQL->bindParam(':img',$nombreArchivo);
         $sentenciaSQL->execute();
-        // echo "press add";
+        header("Location:clientes.php");
         break;
     case "modificar":
         $sentenciaSQL = $conexion->prepare("UPDATE cliente SET ci=:ci, nombre=:nombre, paterno=:appaterno, materno=:apmaterno, celular=:celular, correo=:correo, nomUsuario=:usuario, passw=:contr WHERE idCliente=:id");
@@ -81,10 +81,10 @@ switch($accion){
             $sentenciaSQL->bindParam(':img',$nombreArchivo);
             $sentenciaSQL->execute();
         }
-        
+        header("Location:clientes.php");
         break;
     case "cancelar":
-        // echo "press cls";
+        header("Location:clientes.php");
         break;
     case "seleccionar":
         $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
@@ -119,6 +119,8 @@ switch($accion){
         $sentenciaSQL = $conexion->prepare("DELETE FROM cliente WHERE idCliente=:id");
         $sentenciaSQL->bindParam(':id', $txtID);
         $sentenciaSQL->execute();
+
+        header("Location:clientes.php");
         break;
 }
 
@@ -137,57 +139,62 @@ $listaClientes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     
         <div>
             <label for="txtID">ID:</label>
-            <input type="text" name="txtID" id="txtID" placeholder="ID" value="<?=$txtID?>">
+            <input type="text" required readonly name="txtID" id="txtID" placeholder="ID" value="<?=$txtID?>">
         </div>
 
         <div>
             <label for="txtUsuario">Usuario:</label>
-            <input type="text" name="txtUsuario" placeholder="nombre de usuario" value="<?=$txtUsuario?>">
+            <input type="text" required name="txtUsuario" placeholder="nombre de usuario" value="<?=$txtUsuario?>">
         </div>
 
         <div>
             <label for="txtCorreo">Correo:</label>
-            <input type="text" name="txtCorreo" placeholder="correo del cliente" value="<?=$txtCorreo?>">
+            <input type="text" required name="txtCorreo" placeholder="correo del cliente" value="<?=$txtCorreo?>">
         </div>
 
         <div>
             <label for="txtContra">Contraseña:</label>
-            <input type="text" name="txtContra" placeholder="contraseña del cliente" value="<?=$txtContra?>">
+            <input type="text" required name="txtContra" placeholder="contraseña del cliente" value="<?=$txtContra?>">
         </div>
 
 
         <div>
             <label for="txtCi">CI:</label>
-            <input type="text" name="txtCi" placeholder="número de carnet" value="<?=$txtCi?>">
+            <input type="text" required name="txtCi" placeholder="número de carnet" value="<?=$txtCi?>">
         </div>
 
         <div>
             <label for="txtNombre">Nombre:</label>
-            <input type="text" name="txtNombre" placeholder="nombre del cliente" value="<?=$txtNombre?>">
+            <input type="text" required name="txtNombre" placeholder="nombre del cliente" value="<?=$txtNombre?>">
         </div>
         <div>
             <label for="txtPaterno">Paterno:</label>
-            <input type="text" name="txtPaterno" placeholder="apellido paterno" value="<?=$txtPaterno?>">
+            <input type="text" required name="txtPaterno" placeholder="apellido paterno" value="<?=$txtPaterno?>">
         </div>
         <div>
             <label for="txtMaterno">Materno:</label>
-            <input type="text" name="txtMaterno" placeholder="apellido materno" value="<?=$txtMaterno?>">
+            <input type="text" required name="txtMaterno" placeholder="apellido materno" value="<?=$txtMaterno?>">
         </div>
         <div>
             <label for="txtCelular">Celular:</label>
-            <input type="number" name="txtCelular" placeholder="celular" value="<?=$txtCelular?>">
+            <input type="number" required name="txtCelular" placeholder="celular" value="<?=$txtCelular?>">
         </div>
 
         <div>
             <label for="txtImagen">Foto Perfil:</label>
-            <?=$txtImagen?><br />
+            <?=$txtImagen?>
+            <br />
+            <?php if($txtImagen!=""): ?>
+                <img src="../../img/<?=$txtImagen?>" alt="" width="50">                        
+            <?php endif;?>
+            <br />
             <input type="file" name="txtImagen" >
         </div>
 
         <div>
-            <button type="submit" name="accion" value="agregar">Agregar</button>
-            <button type="submit" name="accion" value="modificar">Modificar</button>
-            <button type="submit" name="accion" value="cancelar">Cancelar</button>
+            <button type="submit" name="accion" <?= ($accion=="seleccionar")?"disabled":"" ?> value="agregar">Agregar</button>
+            <button type="submit" name="accion" <?= ($accion!="seleccionar")?"disabled":"" ?> value="modificar">Modificar</button>
+            <button type="submit" name="accion" <?= ($accion!="seleccionar")?"disabled":"" ?> value="cancelar">Cancelar</button>
         </div>
 
     </form>
@@ -228,7 +235,9 @@ $listaClientes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $cliente['paterno']?></td>
                     <td><?= $cliente['materno']?></td>
                     <td><?= $cliente['celular']?></td>
-                    <td><?= $cliente['fotoPerfil']?></td>
+                    <td>
+                        <img src="../../img/<?=$cliente['fotoPerfil']?>" alt="" width="50">                        
+                    </td>
                     <td>
                         <!-- seleccionar | borrar -->
                         <form method="post">
