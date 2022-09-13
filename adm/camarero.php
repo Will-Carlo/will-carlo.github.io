@@ -7,11 +7,153 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- frontend -->
+<p>camarero</p>
+<p>Bienvenido nombre</p>
+
+
+<?php
+
+$txtIDProducto=(isset($_POST['txtIDProducto']))?$_POST['txtIDProducto']:"";
+$txtIDPedido=(isset($_POST['txtIDPedido']))?$_POST['txtIDPedido']:"";
+$txtIDCliente=(isset($_POST['txtIDCliente']))?$_POST['txtIDCliente']:"";
+$txtCi=(isset($_POST['txtCi']))?$_POST['txtCi']:"";
+$txtApellido=(isset($_POST['txtApellido']))?$_POST['txtApellido']:"";
+$txtObservaciones=(isset($_POST['txtObservaciones']))?$_POST['txtObservaciones']:"";
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+
+include("template/bd.php");
+
+switch($accion){
+    case "agregarDatos": 
+        $sentenciaSQL = $conexion->prepare("INSERT INTO pedido VALUES (NULL, :observaciones, 'preparando', '1', '1', :idCliente);");
+        $sentenciaSQL->bindParam(':observaciones',$txtObservaciones);
+        $sentenciaSQL->bindParam(':idCliente',$txtIDCliente);
+        $sentenciaSQL->execute();
+        // header("Location:clientes.php");
+        echo "pedido: ".$txtIDPedido;
+        break;
+
+    case "agregar": 
+        // echo $txtIDPedido. "  --  ". $txtIDProducto ." -- ".$txtIDCliente;
+        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '25');");
+        $sentenciaSQL->bindParam(':idProducto',$txtIDProducto);
+        // $sentenciaSQL->bindParam(':idPedido',$txtIDPedido);
+        $sentenciaSQL->execute();
+        // header("Location:clientes.php");
+        break;
+    case "modificar":
+        $sentenciaSQL = $conexion->prepare("UPDATE pedido SET observaciones=:observaciones WHERE idPedido=:id");
+        $sentenciaSQL->bindParam(':observaciones', $txtObservaciones);
+        $sentenciaSQL->bindParam(':iDcliente',$txtIDCliente);
+        $sentenciaSQL->execute();
+        header("Location:clientes.php");
+        break;
+    case "cancelar":
+        header("Location:clientes.php");
+        break;
+    case "seleccionar":
+        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+        $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+                
+        $txtUsuario=$datoCliente['nomUsuario'];
+        $txtCi=$datoCliente['ci'];
+        $txtNombre=$datoCliente['nombre'];
+        $txtPaterno=$datoCliente['paterno'];
+        break;
+    case "borrar":
+        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+        $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+
+        $sentenciaSQL = $conexion->prepare("DELETE FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+
+        header("Location:clientes.php");
+        break;
+}
+$sentenciaSQL = $conexion->prepare("SELECT idProducto, fotoProducto, nombre FROM producto;");
+$sentenciaSQL->execute();
+$listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+// $sentenciaSQL = $conexion->prepare("SELECT * FROM pedido where idProducto=:id;");
+// $sentenciaSQL->bindParam(':id', $txtIDProducto);
+// $sentenciaSQL->execute();
+// $listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
+
+<p>tomar pedido</p>
+<div>
+    <form method="POST" enctype="multipart/form-data" action="">
+
+        <div>
+            <label for="txtIDPedido">ID PEDIDO:</label>
+            <input type="text"  readonly name="txtIDPedido" id="txtIDPedido" placeholder="ID" value="<?=$txtIDPedido?>">
+        </div>
+
+        <div>
+            <label for="txtIDCliente">ID CLIENTE:</label>
+            <input type="text"  name="txtIDCliente" id="txtIDCliente" placeholder="ID" value="<?=$txtIDCliente?>">
+        </div>
+        <div>
+            <label for="txtCi">CI:</label>
+            <input type="text"  name="txtCi" placeholder="número de carnet" value="<?=$txtCi?>">
+            <button type="submit" name="accion" <?= ($accion=="seleccionar")?"disabled":"" ?> value="buscar">Buscar</button>
+        </div>
+
+        <div>
+            <label for="txtApellido">Apellido:</label>
+            <input type="text" name="txtApellido" placeholder="apellido" value="<?=$txtCi?>">
+        </div>
+
+        <div>
+            <label for="txtObservaciones">Observaciones:</label>
+            <input type="text" name="txtObservaciones" placeholder="observaciones" value="<?=$txtObservaciones?>">
+        </div>
+    
+        <div>
+            <button type="submit" name="accion" value="agregarDatos">Agregar datos del pedido</button>
+            <button type="submit" name="accion" value="cancelar">Cancelar</button>
+        </div>
+
+    </form>
 
 
 
-    <!-- backend -->
+</div>
+
+<br/><br />
+<div>
+<p>Menú del día</p>
+
+<table class="">
+    
+            
+        <?php foreach($listaMenu as $pedido): ?>
+                <img src="../img/menu/<?=$pedido['fotoProducto']?>" alt="" width="290">                        
+                
+                <?= $pedido['nombre']?>
+                    <form method="post">
+                        <input type="hidden" name="txtIDProducto" id="txtIDProducto" value="<?= $pedido['idProducto']?>"> 
+                        <input type="submit" name="accion" value="agregar" />
+                    </form>
+        <?php endforeach;?>
+    
+</div>
+
+
+
+
+
+
+
+
 
 
 </body>

@@ -101,8 +101,6 @@ switch($accion){
         $txtMaterno=$datoCliente['materno'];
         $txtCelular=$datoCliente['celular'];
         $txtImagen=$datoCliente['fotoPerfil'];
-
-
         break;
     case "borrar":
         $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
