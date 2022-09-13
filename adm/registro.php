@@ -15,6 +15,6 @@ if($_POST){
 </head>
 <body>
 
-
+Hola mundo
 </body>
 </html>
