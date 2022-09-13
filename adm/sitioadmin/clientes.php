@@ -18,7 +18,7 @@ include("../template/bd.php");
 // echo $txtNombre."<br />";
 // echo $txtImagen."<br />";
 // echo $accion."<br />";
-
+// sin archivos
 switch($accion){
     case "agregar": 
         $sentenciaSQL = $conexion->prepare("INSERT INTO cliente VALUES (NULL, :ci, :nombre, :appaterno, :apmaterno, :celular, :correo, :usuario, :contr, :img, '1', '0');");
@@ -30,7 +30,15 @@ switch($accion){
         $sentenciaSQL->bindParam(':correo',$txtCorreo);
         $sentenciaSQL->bindParam(':usuario',$txtUsuario);
         $sentenciaSQL->bindParam(':contr',$txtContra);
-        $sentenciaSQL->bindParam(':img',$txtImagen);
+
+        $fecha = new DateTime();
+        $nombreArchivo=($txtImagen!="")?$fecha->getTimestamp()."_".$_FILES["txtImagen"]["name"]:"imagen.jpg";
+        $tmpImagen=$_FILES["txtImagen"]["tmp_name"];
+        if ($tmpImagen!="") {
+            move_uploaded_file($tmpImagen,"../../img/".$nombreArchivo);
+        }
+
+        $sentenciaSQL->bindParam(':img',$nombreArchivo);
         $sentenciaSQL->execute();
         // echo "press add";
         break;
@@ -48,9 +56,29 @@ switch($accion){
         $sentenciaSQL->execute();
 
         if ($txtImagen!="") {
+
+            // subimos la imagen nueva 
+            $fecha = new DateTime();
+            $nombreArchivo=($txtImagen!="")?$fecha->getTimestamp()."_".$_FILES["txtImagen"]["name"]:"imagen.jpg";
+            $tmpImagen=$_FILES["txtImagen"]["tmp_name"];
+            move_uploaded_file($tmpImagen,"../../img/".$nombreArchivo);
+
+            // borramos la imagen anterior 
+            $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
+            $sentenciaSQL->bindParam(':id', $txtID);
+            $sentenciaSQL->execute();
+            $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+            
+            if (isset($datoCliente["fotoPerfil"]) && ($datoCliente["fotoPerfil"]!="imagen.jpg")) {
+                if(file_exists("../../img/".$datoCliente["fotoPerfil"])){
+                    unlink("../../img/".$datoCliente["fotoPerfil"]);
+                }
+            }    
+
+            // guardamos el registro del nombre en la base de datos
             $sentenciaSQL = $conexion->prepare("UPDATE cliente SET fotoPerfil=:img WHERE idCliente=:id");
             $sentenciaSQL->bindParam(':id', $txtID);
-            $sentenciaSQL->bindParam(':img',$txtImagen);
+            $sentenciaSQL->bindParam(':img',$nombreArchivo);
             $sentenciaSQL->execute();
         }
         
@@ -77,10 +105,20 @@ switch($accion){
 
         break;
     case "borrar":
+        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
+        $sentenciaSQL->bindParam(':id', $txtID);
+        $sentenciaSQL->execute();
+        $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+        
+        if (isset($datoCliente["fotoPerfil"]) && ($datoCliente["fotoPerfil"]!="imagen.jpg")) {
+            if(file_exists("../../img/".$datoCliente["fotoPerfil"])){
+                unlink("../../img/".$datoCliente["fotoPerfil"]);
+            }
+        }
+
         $sentenciaSQL = $conexion->prepare("DELETE FROM cliente WHERE idCliente=:id");
         $sentenciaSQL->bindParam(':id', $txtID);
         $sentenciaSQL->execute();
-        // echo "press delete";
         break;
 }
 
@@ -141,8 +179,9 @@ $listaClientes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div>
-            <label for="fotoPerfil">Foto Perfil:</label>
-            <input type="file" name="txtImagen" value="<?=$txtImagen?>">
+            <label for="txtImagen">Foto Perfil:</label>
+            <?=$txtImagen?><br />
+            <input type="file" name="txtImagen" >
         </div>
 
         <div>
