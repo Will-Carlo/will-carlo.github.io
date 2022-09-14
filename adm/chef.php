@@ -16,33 +16,7 @@ switch($accion){
         $sentenciaSQL = $conexion->prepare("UPDATE pedido SET estado = 'hecho' WHERE idPedido = :id");
         $sentenciaSQL->bindParam(':id', $txtID);
         $sentenciaSQL->execute();
-
-        if ($txtImagen!="") {
-
-            // subimos la imagen nueva 
-            $fecha = new DateTime();
-            $nombreArchivo=($txtImagen!="")?$fecha->getTimestamp()."_".$_FILES["txtImagen"]["name"]:"imagen.jpg";
-            $tmpImagen=$_FILES["txtImagen"]["tmp_name"];
-            move_uploaded_file($tmpImagen,"../../img/".$nombreArchivo);
-
-            // borramos la imagen anterior 
-            $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
-            $sentenciaSQL->bindParam(':id', $txtID);
-            $sentenciaSQL->execute();
-            $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
-            
-            if (isset($datoCliente["fotoPerfil"]) && ($datoCliente["fotoPerfil"]!="imagen.jpg")) {
-                if(file_exists("../../img/".$datoCliente["fotoPerfil"])){
-                    unlink("../../img/".$datoCliente["fotoPerfil"]);
-                }
-            }    
-
-            // guardamos el registro del nombre en la base de datos
-            $sentenciaSQL = $conexion->prepare("UPDATE cliente SET fotoPerfil=:img WHERE idCliente=:id");
-            $sentenciaSQL->bindParam(':id', $txtID);
-            $sentenciaSQL->bindParam(':img',$nombreArchivo);
-            $sentenciaSQL->execute();
-        }
+        
         header("Location:chef.php");
         break;
     case "cancelar":

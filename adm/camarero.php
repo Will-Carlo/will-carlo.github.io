@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<p>camarero</p>
+
 <p>Bienvenido nombre</p>
 
 
@@ -17,7 +17,7 @@ $txtIDProducto=(isset($_POST['txtIDProducto']))?$_POST['txtIDProducto']:"";
 $txtIDPedido=(isset($_POST['txtIDPedido']))?$_POST['txtIDPedido']:"";
 $txtIDCliente=(isset($_POST['txtIDCliente']))?$_POST['txtIDCliente']:"";
 $txtCi=(isset($_POST['txtCi']))?$_POST['txtCi']:"";
-$txtApellido=(isset($_POST['txtApellido']))?$_POST['txtApellido']:"";
+$txtPaterno=(isset($_POST['txtPaterno']))?$_POST['txtPaterno']:"";
 $txtObservaciones=(isset($_POST['txtObservaciones']))?$_POST['txtObservaciones']:"";
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
@@ -35,32 +35,32 @@ switch($accion){
 
     case "agregar": 
         // echo $txtIDPedido. "  --  ". $txtIDProducto ." -- ".$txtIDCliente;
-        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '25');");
+        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '38');");
         $sentenciaSQL->bindParam(':idProducto',$txtIDProducto);
         // $sentenciaSQL->bindParam(':idPedido',$txtIDPedido);
         $sentenciaSQL->execute();
-        // header("Location:clientes.php");
+        header("Location:camarero.php");
         break;
     case "modificar":
         $sentenciaSQL = $conexion->prepare("UPDATE pedido SET observaciones=:observaciones WHERE idPedido=:id");
         $sentenciaSQL->bindParam(':observaciones', $txtObservaciones);
         $sentenciaSQL->bindParam(':iDcliente',$txtIDCliente);
         $sentenciaSQL->execute();
-        header("Location:clientes.php");
+        header("Location:camarero.php");
         break;
     case "cancelar":
-        header("Location:clientes.php");
+        header("Location:camarero.php");
         break;
-    case "seleccionar":
-        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
-        $sentenciaSQL->bindParam(':id', $txtID);
+    case "buscar":
+        $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE ci =:id");
+        $sentenciaSQL->bindParam(':id', $txtCi);
         $sentenciaSQL->execute();
         $datoCliente = $sentenciaSQL->fetch(PDO::FETCH_LAZY);
                 
-        $txtUsuario=$datoCliente['nomUsuario'];
+        $txtIDCliente=$datoCliente['idCliente'];
         $txtCi=$datoCliente['ci'];
-        $txtNombre=$datoCliente['nombre'];
         $txtPaterno=$datoCliente['paterno'];
+        
         break;
     case "borrar":
         $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
@@ -72,7 +72,7 @@ switch($accion){
         $sentenciaSQL->bindParam(':id', $txtID);
         $sentenciaSQL->execute();
 
-        header("Location:clientes.php");
+        header("Location:camarero.php");
         break;
 }
 $sentenciaSQL = $conexion->prepare("SELECT idProducto, fotoProducto, nombre FROM producto;");
@@ -87,6 +87,8 @@ $listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<a href="#">Agregar nuevo cliente</a>
+<a href="#">salir</a>
 
 <p>tomar pedido</p>
 <div>
@@ -104,12 +106,12 @@ $listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         <div>
             <label for="txtCi">CI:</label>
             <input type="text"  name="txtCi" placeholder="número de carnet" value="<?=$txtCi?>">
-            <button type="submit" name="accion" <?= ($accion=="seleccionar")?"disabled":"" ?> value="buscar">Buscar</button>
+            <button type="submit" name="accion"  value="buscar">Buscar</button>
         </div>
 
         <div>
-            <label for="txtApellido">Apellido:</label>
-            <input type="text" name="txtApellido" placeholder="apellido" value="<?=$txtCi?>">
+            <label for="txtPaterno">Apellido:</label>
+            <input type="text" name="txtPaterno" placeholder="apellido" value="<?=$txtPaterno?>">
         </div>
 
         <div>
