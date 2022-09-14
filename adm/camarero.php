@@ -35,7 +35,7 @@ switch($accion){
 
     case "agregar": 
         // echo $txtIDPedido. "  --  ". $txtIDProducto ." -- ".$txtIDCliente;
-        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '42');");
+        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '44');");
         $sentenciaSQL->bindParam(':idProducto',$txtIDProducto);
         // $sentenciaSQL->bindParam(':idPedido',$txtIDPedido);
         $sentenciaSQL->execute();
