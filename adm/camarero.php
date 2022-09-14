@@ -35,11 +35,10 @@ switch($accion){
 
     case "agregar": 
         // echo $txtIDPedido. "  --  ". $txtIDProducto ." -- ".$txtIDCliente;
-        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '38');");
+        $sentenciaSQL = $conexion->prepare("INSERT INTO pide VALUES (:idProducto, '42');");
         $sentenciaSQL->bindParam(':idProducto',$txtIDProducto);
         // $sentenciaSQL->bindParam(':idPedido',$txtIDPedido);
         $sentenciaSQL->execute();
-        header("Location:camarero.php");
         break;
     case "modificar":
         $sentenciaSQL = $conexion->prepare("UPDATE pedido SET observaciones=:observaciones WHERE idPedido=:id");
@@ -60,7 +59,7 @@ switch($accion){
         $txtIDCliente=$datoCliente['idCliente'];
         $txtCi=$datoCliente['ci'];
         $txtPaterno=$datoCliente['paterno'];
-        
+
         break;
     case "borrar":
         $sentenciaSQL = $conexion->prepare("SELECT * FROM cliente WHERE idCliente=:id");
@@ -101,7 +100,7 @@ $listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
         <div>
             <label for="txtIDCliente">ID CLIENTE:</label>
-            <input type="text"  name="txtIDCliente" id="txtIDCliente" placeholder="ID" value="<?=$txtIDCliente?>">
+            <input type="text" readonly name="txtIDCliente" id="txtIDCliente" placeholder="ID" value="<?=$txtIDCliente?>">
         </div>
         <div>
             <label for="txtCi">CI:</label>
@@ -123,11 +122,7 @@ $listaMenu = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
             <button type="submit" name="accion" value="agregarDatos">Agregar datos del pedido</button>
             <button type="submit" name="accion" value="cancelar">Cancelar</button>
         </div>
-
     </form>
-
-
-
 </div>
 
 <br/><br />
