@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
   <head>
-    <title>Contacts</title>
+    <title>Chef</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,14 +94,11 @@
                   <div class="rd-navbar-main">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Inicio</a>
+                      <li class="rd-nav-item active"><a class="rd-nav-link" href="indexchef.html">Recepción de pedidos</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">About us</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="Ingredientes.html">Solicitud de ingredientes</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>
-                      </li>
-                      <li class="rd-nav-item active"><a class="rd-nav-link" href="contacts.html">Contacts</a>
-                      </li>
+                      
                     </ul>
                   </div>
                 </div>
@@ -170,109 +167,52 @@
           </nav>
         </div>
       </header>
-      <!-- Breadcrumbs -->
-      <section class="bg-gray-7">
-        <div class="breadcrumbs-custom box-transform-wrap context-dark">
-          <div class="container">
-            <h3 class="breadcrumbs-custom-title">Contacts</h3>
-            <div class="breadcrumbs-custom-decor"></div>
+      
+        <!-- Swiper Pagination-->
+        <div class="swiper-pagination" data-bullet-custom="true"></div>
+        <!-- Swiper Navigation-->
+        <div class="swiper-button-prev">
+          <div class="preview">
+            <div class="preview__img"></div>
           </div>
-          <div class="box-transform" style="background-image: url(images/bg-1.jpg);"></div>
+          <div class="swiper-button-arrow"></div>
         </div>
-        <div class="container">
-          <ul class="breadcrumbs-custom-path">
-            <li><a href="index.html">Inicio</a></li>
-            <li class="active">Contacts</li>
-          </ul>
-        </div>
-      </section>
-      <!-- Contacts-->
-      <section class="section section-lg bg-default text-md-left">
-        <div class="container">
-          <div class="row row-60 justify-content-center">
-            <div class="col-lg-8">
-              <h4 class="text-spacing-25 text-transform-none">Get in Touch</h4>
-              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
-                <div class="row row-20 gutters-20">
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-your-name-5" type="text" name="name" data-constraints="@Required">
-                      <label class="form-label" for="contact-your-name-5">Your Name*</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-email-5" type="email" name="email" data-constraints="@Email @Required">
-                      <label class="form-label" for="contact-email-5">Your E-mail*</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <!--Select 2-->
-                      <select class="form-input" data-minimum-results-for-search="Infinity" data-constraints="@Required">
-                        <option value="1">Select a Service</option>
-                        <option value="2">Dine-In</option>
-                        <option value="3">Carry-Out</option>
-                        <option value="4">Event Catering</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-phone-5" type="text" name="phone" data-constraints="@Numeric">
-                      <label class="form-label" for="contact-phone-5">Your Phone*</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <label class="form-label" for="contact-message-5">Message</label>
-                      <textarea class="form-input textarea-lg" id="contact-message-5" name="message" data-constraints="@Required"></textarea>
-                    </div>
-                  </div>
-                </div>
-                <button class="button button-secondary button-winona" type="submit">Contact us</button>
-              </form>
-            </div>
-            <div class="col-lg-4">
-              <div class="aside-contacts">
-                <div class="row row-30">
-                  <div class="col-sm-6 col-lg-12 aside-contacts-item">
-                    <p class="aside-contacts-title">Get social</p>
-                    <ul class="list-inline contacts-social-list list-inline-sm">
-                      <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                      <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                      <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                      <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 aside-contacts-item">
-                    <p class="aside-contacts-title">Phone</p>
-                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
-                      <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a class="phone" href="tel:#">1-800-1234-567</a></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 aside-contacts-item">
-                    <p class="aside-contacts-title">E-mail</p>
-                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
-                      <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
-                      <div class="unit-body"><a class="mail" href="mailto:#">info@demolink.org</a></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-12 aside-contacts-item">
-                    <p class="aside-contacts-title">Address</p>
-                    <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                      <div class="unit-body"><a class="address" href="#">6036 Richmond hwy., <br class="d-md-none">Alexandria, VA, 2230</a></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="swiper-button-next">
+          <div class="swiper-button-arrow"></div>
+          <div class="preview">
+            <div class="preview__img"></div>
           </div>
         </div>
       </section>
 
+      
+      <!-- Solicitud de Ingredientes-->
+      <section class="section section-sm section-first bg-default">
+        <div class="container">
+          <h3 class="heading-3">Solicitud de Ingredientes</h3>
+          <form class="rd-form rd-mailform form-style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <div class="row row-20 gutters-20">
+              <div class="col-12">
+                <div class="form-wrap wow fadeIn">
+                  <label class="form-label" for="contact-message-6">Escriba la cantidad y los ingredientes</label>
+                  <textarea class="form-input textarea-lg" id="contact-message-6" name="message" data-constraints="@Required"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="group-custom-1 group-middle oh-desktop">
+              <button class="button button-lg button-primary button-winona wow fadeInRight" type="submit">Enviar</button>
+              <!-- Quote Classic-->
+              <article class="quote-classic quote-classic-3 wow slideInDown">
+                <div class="quote-classic-text">
+                  <p class="q">Porfavor ingresa los ingredientes faltantes.</p>
+                </div>
+              </article>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      
       <!-- Bottom Banner-->
       <!-- <a class="section section-banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" style="background-image: url(images/banner/background-03-1920x310.jpg); background-image: -webkit-image-set( url(images/banner/background-03-1920x310.jpg) 1x, url(images/banner/background-03-3840x620.jpg) 2x )"><img src="images/banner/foreground-03-1600x310.png" srcset="images/banner/foreground-03-1600x310.png 1x, images/banner/foreground-03-3200x620.png 2x" alt="" width="1600" height="310"></a> -->
       <!-- Page Footer-->
@@ -375,5 +315,6 @@
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    <!-- coded by Himic-->
   </body>
 </html>
