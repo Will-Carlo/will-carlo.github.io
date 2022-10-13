@@ -9,7 +9,6 @@ body{background:#674102; display:flex; justify-content:center; align-items:cente
 #signin .input-field input{width:calc(100% - 70px); height:4px; font:500 16px/1 'Roboto',sans-serif; padding:0 20px 0 50px; border:none; box-shadow:0 10px 10px rgba(0,0,0,0.25); color:#606060; border-radius:6px; outline:0; overflow:hidden; position:absolute; bottom:0; left:0; transition:all 300ms;}
 
 #signin .forgot-pw{font:600 14px/1 'Roboto',sans-serif; color:#fedda6; text-decoration:none; float:right; margin:0 0 25px 0; display:block;}
-#signin .nuevo{font:600 14px/1 'Roboto',sans-serif; color:#fedda6; text-decoration:none; float:left; margin:0 0 25px 0; display:block;}
 #signin button.login{min-height:60px; font:500 16px/1 'Roboto',sans-serif; width:100%; padding:20px; display:block; background:#fa9e04; color::#674102; border:none; outline:0; cursor:pointer; position:absolute; left:0; bottom:0;}
 #signin .check{width:100%; height:100%; background:#b07003; position:absolute; top:100%; left:0; text-align:center; visibility:hidden; transition:all 1s;}
 #signin .check.in{visibility:visible; top:0;}
@@ -19,6 +18,19 @@ body{background:#674102; display:flex; justify-content:center; align-items:cente
 #signin .input-field input:focus, #signin .input-field input.not-empty{height:auto; padding:14px 20px 14px 50px;}
 #signin .input-field input:focus + i, #signin .input-field input.not-empty + i{font-size:24px; bottom:26px; height:10px; visibility:visible;}
 #signin .input-field input:focus + i + label, #signin .input-field input.not-empty + i + label{font-size:12px; margin-top:-15px; opacity:0.7; animation:label 300ms 1;}
+
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+
 
 @keyframes label{
 	0%{margin-top:-15px;}
