@@ -1,4 +1,6 @@
 <?php
+// sesión establecida
+
 session_start();
 
 if($_POST){
