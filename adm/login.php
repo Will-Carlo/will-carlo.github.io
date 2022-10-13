@@ -29,6 +29,7 @@ if($_POST){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="" type="./../boots.css"> 
     <title>Document</title>
 </head>
 <body>
@@ -39,8 +40,9 @@ if($_POST){
     <?php endif; ?>
 
     <form method="POST">
-        <div>
-            <label>USUARIO</label>
+        <div class="">
+            <label class="">USUARIO</label>
+
             <input type="text" name="usuario" placeholder="Escribe tu correo">
         </div>
         <div>
@@ -50,5 +52,7 @@ if($_POST){
             <button type="submit" value="accion">Entrar</button>
     </form>
         <small>¿No tienes cuenta? registrate <a href="registro.php"> aquí </a></small>
+        <small>Recupera tu cuenta <a href="reperar.php"> aquí </a></small>
+
 </body>
 </html>
