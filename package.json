@@ -1,6 +1,5 @@
 {
   "name": "mi-portafolio",
-  "homepage": "https://will-carlo.github.io/",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -8,14 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "daisyui": "^5.5.18",
     "framer-motion": "^12.33.0",
-    "gh-pages": "^6.3.0",
     "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
