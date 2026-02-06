@@ -1,35 +1,49 @@
-import { Palette } from "lucide-react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 
 const ThemeController = () => {
-  // Lista de temas disponibles en DaisyUI
-  const themes: string[] = ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"];
-
-  const changeTheme = (theme: string) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  };
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
   return (
-    <div className="fixed top-4 right-4 z-50 dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle bg-base-200/50 backdrop-blur-md shadow-lg border border-white/10">
-        <Palette size={20} />
-      </label>
-      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-2xl bg-base-200 rounded-box w-52 max-h-96 overflow-y-auto mt-2">
-        {themes.map((t) => (
-          <li key={t}>
-            <button onClick={() => changeTheme(t)} className="capitalize text-sm font-medium">
-              {t}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <label 
+      className={`swap swap-rotate btn btn-circle shadow-xl z-50 hover:scale-110 transition-transform border-none
+        ${theme === 'dark' 
+          ? 'bg-white text-black hover:bg-gray-200' // En Dark: Botón Blanco, Icono Negro
+          : 'bg-gray-900 text-white hover:bg-gray-700' // En Light: Botón Negro, Icono Blanco
+        }
+      `}
+    >
+      
+      {/* Input para controlar el estado del swap */}
+      <input 
+        type="checkbox" 
+        onChange={toggleTheme} 
+        checked={theme === "light"} 
+      />
+      
+      {/* ICONO LUNA (Se muestra cuando el tema es LIGHT) */}
+      {/* Al ser el tema Light, el botón es negro y el texto blanco, así que la luna será blanca */}
+      <Moon size={24} className="swap-on fill-current" />
+      
+      {/* ICONO SOL (Se muestra cuando el tema es DARK) */}
+      {/* Al ser el tema Dark, el botón es blanco y el texto negro, así que el sol será negro */}
+      <Sun size={24} className="swap-off fill-current" />
+      
+    </label>
   );
 };
+
 export default ThemeController;

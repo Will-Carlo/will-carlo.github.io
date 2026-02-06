@@ -6,22 +6,20 @@ import ProjectsGrid from './components/ProjectsGrid';
 import TechMarquee from './components/TechMarquee';
 import Certifications from './components/Certifications';
 import Footer from './components/Footer';
-import ContactModal from './components/ContactModal'; // Importamos el modal
-import AboutSection from './components/AboutSection'; // Importamos Sobre Mí
+import ContactModal from './components/ContactModal';
+import AboutSection from './components/AboutSection';
 
 function App() {
   return (
-    <div className="min-h-screen relative font-sans text-base-content overflow-x-hidden">
+    <div className="min-h-screen relative font-sans text-base-content overflow-x-hidden transition-colors duration-300">
       
       <Background />
-      
-      {/* El Navbar ahora maneja su propia visibilidad al scroll */}
       <Navbar />
-      
-      {/* El modal vive oculto hasta que se le llama */}
       <ContactModal />
       
-      <div className="absolute top-0 right-0 pt-4 pr-4 lg:pr-6 z-50">
+      {/* --- CAMBIO AQUÍ: Posición Inferior Derecha (Bottom-Right) --- */}
+      {/* 'fixed' asegura que te siga al bajar. 'z-50' para que esté sobre todo. */}
+      <div className="fixed bottom-6 right-6 z-50">
          <ThemeController />
       </div>
 
@@ -31,13 +29,9 @@ function App() {
            <HeroSection />
         </div>
 
-        {/* Nueva Sección: Sobre Mí */}
         <AboutSection />
-
         <ProjectsGrid />
-
         <TechMarquee />
-
         <Certifications />
       
       </main>
