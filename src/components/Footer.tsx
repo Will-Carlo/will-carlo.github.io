@@ -2,7 +2,8 @@ import { profile } from "../data";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded mt-10">
+    // Quitamos 'rounded' y 'mt-10' para que sea una franja completa
+    <footer className="footer footer-center p-10 bg-base-200 text-base-content w-full">
       <div className="grid grid-flow-col gap-4">
         <a href="#home" className="link link-hover">Inicio</a>
         <a href="#projects" className="link link-hover">Proyectos</a>

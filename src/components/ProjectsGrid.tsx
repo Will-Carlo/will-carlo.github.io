@@ -1,4 +1,4 @@
-import { projects, Project } from "../data";
+import { projects, type Project } from "../data";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 
