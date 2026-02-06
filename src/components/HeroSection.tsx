@@ -1,5 +1,5 @@
 import { profile } from "../data";
-import { Download, ChevronDown } from "lucide-react";
+import { Download } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
