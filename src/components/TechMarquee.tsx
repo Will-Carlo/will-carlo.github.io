@@ -1,4 +1,5 @@
-import { technologies, TechItem } from "../data";
+import { technologies } from "../data";
+import type { TechItem } from "../data";
 import { motion } from "framer-motion";
 
 interface TechRowProps {

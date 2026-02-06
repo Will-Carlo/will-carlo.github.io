@@ -1,4 +1,5 @@
-import { Home, User, Briefcase, Cpu, Award, LucideIcon } from "lucide-react";
+import { Home, User, Briefcase, Cpu, Award } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface NavItem {
   id: string;

@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, LucideIcon } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // --- Interfaces (Definiciones de Tipo) ---
 export interface Social {
@@ -40,7 +41,7 @@ export interface Certification {
 // --- Datos ---
 
 export const profile: Profile = {
-  name: "Carlo [Tu Apellido]", 
+  name: "Will Carlo", 
   role: "Java & React Developer | SaaS Specialist",
   bio: "Soy desarrollador de software especializado en la creación de sistemas empresariales y plataformas SaaS. Me enfoco en escribir código limpio, mantenible y seguro. Tengo experiencia construyendo sistemas completos desde el backend hasta el frontend.",
   photo: "/profile.jpg", 

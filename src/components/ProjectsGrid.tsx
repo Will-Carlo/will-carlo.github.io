@@ -1,4 +1,5 @@
-import { projects, Project } from "../data";
+import { projects } from "../data";
+import type { Project } from "../data";
 import { motion } from "framer-motion";
 
 interface ProjectCardProps {

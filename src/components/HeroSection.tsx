@@ -14,7 +14,6 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6 text-center lg:text-left order-2 lg:order-1"
         >
-          <div className="badge badge-primary badge-outline font-bold p-3">Disponible para trabajar</div>
           <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
             Soy <span className="text-primary">{profile.name.split(" ")[0]}</span>
             <br />
