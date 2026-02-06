@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const Background = () => {
-  const stars = Array.from({ length: 50 }); // Generamos 50 estrellas sutiles
+  const stars = Array.from({ length: 50 });
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-base-300">
