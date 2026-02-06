@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-        
+    <section id="home" className="flex items-center justify-center py-10 relative overflow-visible">
+      <div className="grid lg:grid-cols-2 gap-12 items-center w-full">        
         {/* Texto (Izquierda) */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
@@ -54,10 +53,6 @@ const HeroSection = () => {
           </div>
         </motion.div>
       </div>
-
-      <a href="#projects" className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-        <ChevronDown size={32} />
-      </a>
     </section>
   );
 };

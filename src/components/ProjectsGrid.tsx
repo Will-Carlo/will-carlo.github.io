@@ -41,8 +41,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
 
 const ProjectsGrid = () => {
   return (
-    <section id="projects" className="py-20 bg-base-200/30">
-      <div className="container mx-auto px-4">
+    // CAMBIO: py-20 -> py-10. Quitamos bg-base-200/30 para que sea más limpio.
+    <section id="projects" className="py-10">
+      {/* CAMBIO: Quitamos 'container mx-auto px-4' */}
+      <div>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Proyectos Destacados</h2>
           <p className="max-w-2xl mx-auto text-base-content/60">

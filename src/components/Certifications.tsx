@@ -3,8 +3,8 @@ import { CheckCircle } from "lucide-react";
 
 const Certifications = () => {
   return (
-    <section id="certs" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="certs" className="py-10">
+      <div>
         <h2 className="text-4xl font-bold text-center mb-16">Certificaciones & Formación</h2>
         
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">

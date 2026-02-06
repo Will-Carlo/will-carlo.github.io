@@ -9,36 +9,34 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    // 'font-sans' aplica la fuente por defecto de Tailwind.
-    // 'text-base-content' asegura que el texto tome el color correcto del tema DaisyUI.
-    <div className="min-h-screen relative font-sans text-base-content transition-colors duration-300">
+    // 1. Contenedor principal limitado en ancho (max-w-6xl) y centrado (mx-auto).
+    // Added px-6 md:px-12 for nice side margins on smaller screens.
+    <div className="min-h-screen relative font-sans text-base-content max-w-4xl mx-auto px-6 md:px-12 overflow-x-hidden">
       
-      {/* --- Elementos Globales (Fondo, Menú, Tema) --- */}
       <Background />
       <Navbar />
-      <ThemeController />
+      {/* Ajustamos la posición del ThemeController para que respete el nuevo ancho */}
+      <div className="absolute top-0 right-0 pt-4 pr-4 lg:pr-0 z-50">
+         <ThemeController />
+      </div>
 
-      {/* --- Contenido Principal --- */}
-      <main className="pb-20">
+      {/* 2. Usamos Flex columna con un GAP GRANDE (gap-32 = 8rem = 128px) entre secciones */}
+      {/* Esto da el "aire" que pediste. */}
+      <main className="flex flex-col gap-32 pb-32">
         
-        {/* Sección de Inicio / Hero */}
-        <HeroSection />
+        {/* El Hero tiene su propio padding superior interno, así que no lo sumamos al gap */}
+        <div className='mt-20 lg:mt-28'>
+           <HeroSection />
+        </div>
 
-        {/* Separador visual sutil */}
-        <div className="divider container mx-auto opacity-10 my-0"></div>
-
-        {/* Sección de Proyectos */}
         <ProjectsGrid />
 
-        {/* Sección de Tecnologías (Marquee infinito) */}
         <TechMarquee />
 
-        {/* Sección de Certificaciones */}
         <Certifications />
       
       </main>
 
-      {/* --- Footer --- */}
       <Footer />
     </div>
   );

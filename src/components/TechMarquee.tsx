@@ -26,8 +26,10 @@ const TechRow = ({ items, reverse = false }: TechRowProps) => (
 
 const TechMarquee = () => {
   return (
-    <section id="tech" className="py-24 relative">
-      <div className="container mx-auto px-4 mb-12 text-center">
+    // CAMBIO: py-24 -> py-10
+    <section id="tech" className="py-10 relative">
+       {/* CAMBIO: Quitamos 'container mx-auto px-4' */}
+      <div className="mb-12 text-center">
         <h2 className="text-4xl font-bold mb-4">Stack Tecnológico</h2>
         <p className="text-base-content/60">Herramientas que domino para construir soluciones robustas</p>
       </div>
