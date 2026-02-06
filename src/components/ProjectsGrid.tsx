@@ -36,7 +36,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 border border-base-content/5 overflow-hidden group h-full"
+    className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full"
   >
     <figure className="relative h-56 overflow-hidden">
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10 backdrop-blur-[2px]">
@@ -58,7 +58,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
         {project.description}
       </p>
       
-      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-base-content/5">
+      <div className="flex flex-wrap gap-2 mt-auto pt-4 ">
         {project.tags.map((tag, i) => (
           <span 
             key={i} 

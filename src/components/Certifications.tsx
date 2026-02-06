@@ -9,7 +9,7 @@ const Certifications = () => {
         
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
-            <div key={index} className="flex items-center gap-4 p-6 bg-base-100 rounded-2xl shadow-lg border border-base-content/5 hover:border-primary/30 transition-colors">
+            <div key={index} className="flex items-center gap-4 p-6 bg-base-100 rounded-2xl shadow-lg transition-colors">
               <div className="w-16 h-16 flex-shrink-0 bg-base-200 rounded-xl flex items-center justify-center p-2">
                 {cert.image ? (
                   <img src={cert.image} alt={cert.issuer} className="w-full h-full object-contain" />

@@ -1,4 +1,3 @@
-import { profile } from "../data";
 import { User, Heart, Zap, Coffee } from "lucide-react";
 
 const AboutSection = () => {
