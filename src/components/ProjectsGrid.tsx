@@ -1,6 +1,6 @@
 import { projects, type Project } from "../data";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -20,7 +20,6 @@ const getTagColor = (tag: string) => {
     "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300",
   ];
   
-  // Hash simple para que el mismo tag siempre tenga el mismo color
   let hash = 0;
   for (let i = 0; i < tag.length; i++) {
     hash = tag.charCodeAt(i) + ((hash << 5) - hash);
@@ -32,37 +31,67 @@ const getTagColor = (tag: string) => {
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => (
   <motion.div 
-    initial={{ opacity: 0, y: 50 }}
+    initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full"
+    // Eliminamos 'h-full' para que la tarjeta se ajuste al contenido y no estire el espacio
+    className="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
   >
-    <figure className="relative h-56 overflow-hidden">
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10 backdrop-blur-[2px]">
-        <a href={project.link} className="btn btn-primary gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-          Ver Detalles <ExternalLink size={16}/>
+    {/* 1. IMAGEN MÁS GRANDE:
+        Cambiamos h-56 por h-64 (o podrías usar h-72 si la quieres aun más alta).
+        Esto le da más protagonismo visual.
+    */}
+    <figure className="relative h-64 w-full overflow-hidden">
+      
+      {/* Overlay de Hover mejorado */}
+      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 backdrop-blur-sm">
+        <a 
+          href={project.link} 
+          className="btn btn-circle btn-lg btn-primary scale-0 group-hover:scale-100 transition-transform duration-300 shadow-xl"
+        >
+          <ArrowUpRight size={32} />
         </a>
       </div>
-      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-      <div className="absolute top-3 right-3 badge badge-neutral shadow-md font-mono text-xs tracking-wider uppercase opacity-90">{project.type}</div>
+
+      <img 
+        src={project.image} 
+        alt={project.title} 
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+      />
+      
+      {/* Badge reposicionado sutilmente */}
+      <div className="absolute top-4 right-4 badge badge-neutral/90 backdrop-blur-md shadow-lg font-bold text-xs uppercase tracking-wide border-none px-3 py-3">
+        {project.type}
+      </div>
     </figure>
     
-    <div className="card-body p-6 flex flex-col h-full">
-      {/* Título más grande y llamativo */}
-      <h2 className="card-title text-2xl font-bold text-base-content mb-2 group-hover:text-primary transition-colors">
-        {project.title}
-      </h2>
+    {/* 2. ESPACIO CORREGIDO:
+        - Quitamos 'h-full', 'flex-grow' y 'mt-auto'.
+        - Usamos 'gap-4' para mantener una separación consistente sin importar el largo del texto.
+    */}
+    <div className="card-body p-6 gap-4">
       
-      <p className="text-base-content/70 flex-grow mb-4 leading-relaxed">
-        {project.description}
-      </p>
+      <div className="space-y-2">
+        <h2 className="card-title text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+          {project.title}
+        </h2>
+        
+        {/* Descripción sin flex-grow para que no empuje los tags hacia abajo */}
+        <p className="text-base-content/70 leading-relaxed text-sm">
+          {project.description}
+        </p>
+      </div>
       
-      <div className="flex flex-wrap gap-2 mt-auto pt-4 ">
+      {/* Separador sutil */}
+      <div className="h-px w-full bg-base-content/5 my-1"></div>
+
+      {/* Tags pegados al contenido */}
+      <div className="flex flex-wrap gap-2">
         {project.tags.map((tag, i) => (
           <span 
             key={i} 
-            className={`px-2.5 py-1 rounded-md text-xs font-medium border border-transparent ${getTagColor(tag)}`}
+            className={`px-3 py-1 rounded-md text-xs font-bold tracking-wide border border-transparent/5 shadow-sm ${getTagColor(tag)}`}
           >
             {tag}
           </span>
@@ -76,15 +105,14 @@ const ProjectsGrid = () => {
   return (
     <section id="projects" className="py-10">
       <div>
-        <div className="text-center mb-16 space-y-2">
+        <div className="mb-12 space-y-2">
           <h2 className="text-4xl font-bold">Proyectos Destacados</h2>
-          <p className="max-w-2xl mx-auto text-base-content/60">
-            Sistemas empresariales, SaaS y soluciones que marcan la diferencia.
+          <p className="text-base-content/60 max-w-xl">
+             Soluciones que combinan arquitectura robusta con interfaces modernas.
           </p>
         </div>
 
-        {/* Grid de 2 columnas como pediste */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}

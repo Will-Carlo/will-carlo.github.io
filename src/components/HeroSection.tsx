@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="flex items-center justify-center py-10 relative overflow-visible">
+    <section id="home" className="flex items-center justify-center relative overflow-visible">
       <div className="grid lg:grid-cols-2 gap-12 items-center w-full">        
         {/* Texto (Izquierda) */}
         <motion.div 
