@@ -18,7 +18,7 @@ const AboutSection = () => {
             <span className="text-primary">/</span> Sobre Mí
           </h2>
           <p className="text-base-content/80 leading-relaxed text-lg">
-            Soy un programador apasionado de 26 años. Mi viaje en el código comenzó en el backend, construyendo la lógica robusta que hace que las cosas funcionen, y poco a poco me he enamorado del frontend, buscando crear experiencias completas.
+            Mi viaje en el código comenzó en el backend, construyendo la lógica robusta que hace que las cosas funcionen, y poco a poco me he enamorado del frontend, buscando crear experiencias completas.
           </p>
           <p className="text-base-content/70">
             Más allá del código, valoro la arquitectura limpia y las soluciones que escalan. Cuando no estoy programando, probablemente estoy buscando la manera de optimizar algún proceso o aprendiendo una nueva tecnología.
