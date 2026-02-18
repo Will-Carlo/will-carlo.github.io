@@ -9,14 +9,23 @@ interface ProjectCardProps {
 
 const getTagColor = (tag: string) => {
   const colors = [
-    "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
-    "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-    "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
-    "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
-    "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-    "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
-    "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300",
+    "bg-orange-600 dark:bg-orange-900/30",
+    "bg-green-600 dark:bg-green-900/30",
+    "bg-purple-600 dark:bg-purple-900/30",
+    "bg-pink-600 dark:bg-pink-900/30",
+    "bg-yellow-600 dark:bg-yellow-900/30",
+    "bg-red-600 dark:bg-red-900/30",
+    "bg-teal-600 dark:bg-teal-900/30",
+    "bg-blue-600 dark:bg-blue-900/30",
+    "bg-indigo-600 dark:bg-indigo-900/30",
+    "bg-gray-600 dark:bg-gray-900/30",
+    "bg-cyan-600 dark:bg-cyan-900/30",
+    "bg-lime-600 dark:bg-lime-900/30",
+    "bg-amber-600 dark:bg-amber-900/30",
+    "bg-violet-600 dark:bg-violet-900/30",
+    "bg-rose-600 dark:bg-rose-900/30",
+    "bg-fuchsia-600 dark:bg-fuchsia-900/30",
+    "bg-slate-600 dark:bg-slate-900/30",
   ];
   
   let hash = 0;
