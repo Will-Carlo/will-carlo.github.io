@@ -86,14 +86,6 @@ export const technologies: TechItem[][] = [
 
 export const projects: Project[] = [
   {
-    title: "RRHH System",
-    description: "Sistema integral para gestión de Recursos Humanos, control de asistencias, sueldos y bonos.",
-    tags: ["Java", "JSF", "PrimeFaces", "MySQL", "Hibernate", "JPA"],
-    image: "/projects/rrhh.jpg",
-    link: "#",
-    type: "Enterprise Monolith"
-  },
-  {
     title: "Comerzia SaaS",
     description: "Plataforma multi-tenant para gestión de inventarios y ventas con arquitectura modular.",
     tags: ["Java", "Spring Boot", "Spring Security", "React", "JWT", "JPA/Hibernate", "SaaS", "DaysiUI", "Tailwind CSS", "MySQL"],
@@ -108,6 +100,14 @@ export const projects: Project[] = [
     image: "/projects/travesia.jpg",
     link: "#",
     type: "SaaS Platform"
+  },
+  {
+    title: "RRHH System",
+    description: "Sistema integral para gestión de Recursos Humanos, control de asistencias, sueldos y bonos.",
+    tags: ["Java", "JSF", "PrimeFaces", "MySQL", "Hibernate", "JPA"],
+    image: "/projects/rrhh.jpg",
+    link: "#",
+    type: "Enterprise Monolith"
   },
   {
     title: "Bolivia Decide",
@@ -127,11 +127,19 @@ export const projects: Project[] = [
   },
   {
     title: "Biometric App",
-    description: "Control de asistencia offline/online con huella digital.",
+    description: "Aplicación de escritorio para control de asistencia offline/online con huella digital.",
     tags: ["C# .NET", "Windows Forms", "SQLite", "DigitalPersona", "APIs REST"],
     image: "/projects/bio.jpg",
     link: "#",
     type: "Desktop App"
+  },
+  {
+    title: "Mumanal",
+    description: "Sistema de registro de vouchers.",
+    tags: ["Java", "Spring Boot", "Spring Security", "JWT", "JPA/Hibernate", "MySQL", "React", "DaisyUI", "APIs REST"],
+    image: "/projects/mumanal.jpg",
+    link: "#",
+    type: "Web App"
   }
 ];
 
