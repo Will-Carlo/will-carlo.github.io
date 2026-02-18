@@ -46,11 +46,11 @@ export const profile: Profile = {
   bio: "Soy desarrollador de software especializado en la creación de sistemas empresariales y plataformas SaaS. Me enfoco en escribir código limpio, mantenible y seguro. Tengo experiencia construyendo sistemas completos desde el backend hasta el frontend.",
   photo: "/profile.jpg", 
   socials: [
-    { icon: Github, url: "https://github.com/tu-usuario", label: "GitHub" },
-    { icon: Linkedin, url: "https://linkedin.com/in/tu-usuario", label: "LinkedIn" },
-    { icon: Mail, url: "mailto:tu@email.com", label: "Email" },
+    { icon: Github, url: "https://github.com/Will-Carlo", label: "GitHub" },
+    { icon: Linkedin, url: "https://www.linkedin.com/in/will-carlo/", label: "LinkedIn" },
+    { icon: Mail, url: "mailto:will.carlo@outlook.com", label: "Email" },
   ],
-  cvUrl: "/cv-carlo.pdf"
+  cvUrl: "/cv-wilder-fernando-carlo.pdf"
 };
 
 export const technologies: TechItem[][] = [
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   {
     title: "RRHH System",
     description: "Sistema integral para gestión de Recursos Humanos, control de asistencias, sueldos y bonos.",
-    tags: ["Java", "JSF", "PrimeFaces", "MySQL"],
+    tags: ["Java", "JSF", "PrimeFaces", "MySQL", "Hibernate", "JPA"],
     image: "/projects/rrhh.jpg",
     link: "#",
     type: "Enterprise Monolith"
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     title: "Comerzia SaaS",
     description: "Plataforma multi-tenant para gestión de inventarios y ventas con arquitectura modular.",
-    tags: ["Spring Boot", "React", "JWT", "SaaS"],
+    tags: ["Java", "Spring Boot", "Spring Security", "React", "JWT", "JPA/Hibernate", "SaaS", "DaysiUI", "Tailwind CSS", "MySQL"],
     image: "/projects/comerzia.jpg",
     link: "#",
     type: "SaaS Platform"
@@ -104,7 +104,7 @@ export const projects: Project[] = [
   {
     title: "Travesía",
     description: "SaaS para agencias de turismo, gestión de paquetes, afiliados y comisiones.",
-    tags: ["Java", "Spring Security", "React", "Cloudinary"],
+    tags: ["Java", "Spring Boot", "Spring Security", "JWT", "JPA/Hibernate", "MySQL", "React", "DaisyUI", "Cloudinary", "APIs REST"],
     image: "/projects/travesia.jpg",
     link: "#",
     type: "SaaS Platform"
@@ -112,7 +112,7 @@ export const projects: Project[] = [
   {
     title: "Bolivia Decide",
     description: "Simulador de elecciones digitales y análisis de tendencias con autenticación Google.",
-    tags: ["Spring Boot", "OAuth2", "React", "Analytics"],
+    tags: ["Spring Boot", "Spring Security", "OAuth2", "React", "Analytics", "APIs REST"],
     image: "/projects/bolivia.jpg",
     link: "#",
     type: "Web App"
@@ -120,7 +120,7 @@ export const projects: Project[] = [
   {
     title: "WhatsApp Bot",
     description: "Bot conversacional automatizado integrado con ChatGPT y Meta API.",
-    tags: ["Python", "WhatsApp API", "ChatGPT"],
+    tags: ["Python", "WhatsApp API", "ChatGPT API", "APIs REST", "Automation"],
     image: "/projects/bot.jpg",
     link: "#",
     type: "Automation"
@@ -128,7 +128,7 @@ export const projects: Project[] = [
   {
     title: "Biometric App",
     description: "Control de asistencia offline/online con huella digital.",
-    tags: ["C# .NET", "SQLite", "DigitalPersona"],
+    tags: ["C# .NET", "Windows Forms", "SQLite", "DigitalPersona", "APIs REST"],
     image: "/projects/bio.jpg",
     link: "#",
     type: "Desktop App"

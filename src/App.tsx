@@ -23,7 +23,7 @@ function App() {
          <ThemeController />
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col gap-32 pb-32">
+      <main className="max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-32 pb-32">
         
         <div className='mt-20 lg:mt-28'>
            <HeroSection />
